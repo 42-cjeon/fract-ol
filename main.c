@@ -52,7 +52,7 @@ static inline t_complex complex_add(t_complex x, t_complex y)
 	return (x);
 }
 
-#define MAX_STEP 100
+#define MAX_STEP 1000
 
 int is_in_set(t_complex c)
 {
@@ -74,8 +74,8 @@ int is_in_set(t_complex c)
 #define RE_END -1.725
 #define IM_START -0.05
 #define IM_END 0.01
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
 
 int is_in_set2(t_complex c, t_complex z)
 {
