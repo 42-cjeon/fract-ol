@@ -1,0 +1,12 @@
+{
+	"C_Cpp.default.includePath": [
+		"${workspaceRoot}/includes"
+	],
+	"files.associations": {
+		"calc_escape_time.h": "c",
+		"paint_fractal.h": "c",
+		"init_complex.h": "c",
+		"fract_ol.h": "c",
+		"math.h": "c"
+	}
+}
