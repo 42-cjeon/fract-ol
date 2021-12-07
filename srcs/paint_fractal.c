@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint_fractal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjeon <student.42seoul.kr>                 +#+  +:+       +#+        */
+/*   By: cjeon <cjeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 11:09:21 by cjeon             #+#    #+#             */
-/*   Updated: 2021/12/06 21:30:01 by cjeon            ###   ########.fr       */
+/*   Updated: 2021/12/07 01:58:13 by cjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void scale_by_view(t_complex *c, t_view *view)
 	c->i += view->im_start;
 }
 
-void	paint_fractal(unsigned int *img, t_fractal_func *ff, t_view *view)
+void	paint_fractal(unsigned int *img, t_fractal_func *ff, t_view *view, t_color *color)
 {
 	t_complex		c;
 	t_complex		z;
@@ -50,7 +50,7 @@ void	paint_fractal(unsigned int *img, t_fractal_func *ff, t_view *view)
 			scale_by_view(&c, view);
 			ff->init_complex(&z, &c);
 			time = ff->calc_time(&z, &c);
-			*img++ = get_color(time);
+			*img++ = get_color(color, time);
 			w++;
 		}
 		h++;

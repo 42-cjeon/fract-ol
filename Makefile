@@ -8,17 +8,15 @@ INCLUDES_ROOT = includes
 OBJS_ROOT = objs
 MLX_ROOT = $(SRCS_ROOT)/minilibx
 
-SRCS = calc_escape_time.c fract_ol.c ft_complex.c init_complex.c paint_fractal.c
+SRCS = calc_escape_time.c fract_ol.c ft_complex.c init_complex.c paint_fractal.c coloring.c
 OBJS = $(addprefix $(OBJS_ROOT)/, $(SRCS:.c=.o))
-#MLX = $(MLX_ROOT)/libmlx.dylib
-
-MLX = libmlx.a
+MLX = $(MLX_ROOT)/libmlx.a
 
 vpath %.c $(SRCS_ROOT)
 vpath %.h $(INCLUDES_ROOT)
 
 $(NAME) : $(OBJS) $(MLX) 
-	clang -O3 -lmlx -L$(MLX_ROOT) -framework OpenGL -framework AppKit -o $@ $^
+	$(CC) -O3 -lmlx -L$(MLX_ROOT) -framework OpenGL -framework AppKit -o $@ $^
 
 $(OBJS_ROOT)/%.o : $(SRCS_ROOT)/%.c $(INCLUDES_ROOT)/%.h $(INCLUDES_ROOT)/constants.h
 	$(CC) -O3 -c $(CFLAGS) -o $@ $<
