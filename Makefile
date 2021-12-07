@@ -8,7 +8,8 @@ INCLUDES_ROOT = includes
 OBJS_ROOT = objs
 MLX_ROOT = $(SRCS_ROOT)/minilibx
 
-SRCS = calc_escape_time.c fract_ol.c ft_complex.c init_complex.c paint_fractal.c coloring.c
+SRCS = calc_escape_time.c fract_ol.c ft_complex.c init_complex.c paint_fractal.c \
+		coloring.c keyboard_handler.c display_fractal.c utils.c mouse_handler.c
 OBJS = $(addprefix $(OBJS_ROOT)/, $(SRCS:.c=.o))
 MLX = $(MLX_ROOT)/libmlx.a
 
@@ -26,6 +27,8 @@ $(MLX) :
 
 all : $(NAME)
 
+bonus : all
+
 clean :
 	$(RM) $(OBJS)
 	$(MAKE) -C $(MLX_ROOT) clean
@@ -35,4 +38,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all bonus clean fclean re

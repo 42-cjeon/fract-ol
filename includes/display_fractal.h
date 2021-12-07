@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coloring.h                                         :+:      :+:    :+:   */
+/*   display_fractal.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjeon <student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 21:30:27 by cjeon             #+#    #+#             */
-/*   Updated: 2021/12/07 14:02:45 by cjeon            ###   ########.fr       */
+/*   Created: 2021/12/07 13:20:43 by cjeon             #+#    #+#             */
+/*   Updated: 2021/12/07 15:00:03 by cjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORING_H
-# define COLORING_H
+#ifndef DISPLAY_FRACTAL_H
+# define DISPLAY_FRACTAL_H
 
-# include <math.h>
-# include "constants.h"
+# include "coloring.h"
+# include "mlx.h"
+# include "paint_fractal.h"
 
-typedef struct s_color
+typedef struct s_image
 {
-	int		shift;
-	int		deg;
-	double	saturation;
-}	t_color;
+	void	*img;
+	void	*addr;
+	int		bpp;
+	int		width;
+	int		endian;
+}	t_image;
 
-unsigned int	get_color(t_color *color, int time);
-unsigned int	hsv_to_rgb(int h, double s, double v);
-void			init_color(t_color *color);
+typedef struct s_draw_fractal_arg
+{
+	t_fractal_func	*ff;
+	t_image			*img;
+	t_view			*view;
+	t_color			*color;
+	void			*mlx;
+	void			*win;
+
+}	t_df_arg;
+
+int	display_fractal(t_df_arg *arg);
 
 #endif

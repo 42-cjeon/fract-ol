@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_handler.c                                 :+:      :+:    :+:   */
+/*   mouse_handler.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjeon <cjeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: cjeon <student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 02:20:31 by cjeon             #+#    #+#             */
-/*   Updated: 2021/12/07 11:17:31 by cjeon            ###   ########.fr       */
+/*   Created: 2021/12/07 13:44:03 by cjeon             #+#    #+#             */
+/*   Updated: 2021/12/07 15:00:02 by cjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYBOARD_HANDLER_H
-# define KEYBOARD_HANDLER_H
+#ifndef MOUSE_HANDLER_H
+# define MOUSE_HANDLER_H
 
+# include "display_fractal.h"
+# include "constants.h"
 
+# define MS_SCROOL_DOWN 5
+# define MS_SCROOL_UP 4
+
+int	mouse_hook(int code, int x, int y, t_df_arg *arg);
 
 #endif

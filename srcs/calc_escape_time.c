@@ -6,7 +6,7 @@
 /*   By: cjeon <student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 10:41:10 by cjeon             #+#    #+#             */
-/*   Updated: 2021/12/06 21:07:43 by cjeon            ###   ########.fr       */
+/*   Updated: 2021/12/07 14:11:41 by cjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	calc_mandelbrot_time(t_complex *z, t_complex *c)
 	int	i;
 
 	i = 0;
-	while (i < MAX_ITER && complex_dist(z) < 3)
+	while (i < MAX_ITER && complex_dist(z) < 4)
 	{
 		complex_square(z);
 		complex_add(z, c);
 		i++;
 	}
-	return i;
+	return (i);
 }
 
 int	calc_julia_time(t_complex *c, t_complex *z)
@@ -37,12 +37,12 @@ int	calc_julia_time(t_complex *c, t_complex *z)
 		complex_add(z, c);
 		i++;
 	}
-	return i;
+	return (i);
 }
 
-int calc_burningship_time(t_complex *z, t_complex *c)
+int	calc_burningship_time(t_complex *z, t_complex *c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < MAX_ITER && complex_dist(z) < 4)
@@ -53,5 +53,5 @@ int calc_burningship_time(t_complex *z, t_complex *c)
 		complex_add(z, c);
 		i++;
 	}
-	return i;
+	return (i);
 }

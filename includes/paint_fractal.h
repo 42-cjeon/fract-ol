@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint_fractal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjeon <cjeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: cjeon <student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 11:09:49 by cjeon             #+#    #+#             */
-/*   Updated: 2021/12/07 00:27:51 by cjeon            ###   ########.fr       */
+/*   Updated: 2021/12/07 14:54:58 by cjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "complex.h"
 # include "init_complex.h"
 
-
 typedef void	(*t_initf)(t_complex *z, t_complex *c);
 typedef int		(*t_calc_timef)(t_complex *c, t_complex* z);
 typedef struct s_view
@@ -29,14 +28,16 @@ typedef struct s_view
 	double	im_start;
 	double	im_end;
 }				t_view;
+
 typedef struct s_fractal_func
 {
 	t_initf			init_complex;
 	t_calc_timef	calc_time;
-}	t_fractal_func;
+}				t_fractal_func;
 
-void			paint_fractal(unsigned int *img, t_fractal_func *ff, t_view *view, t_color *color);
-void			scale_by_view(t_complex *c, t_view *view);
-void			scale_by_window(t_complex *c);
-
+void	paint_fractal(unsigned int *img, t_fractal_func *ff, \
+						t_view *view, t_color *color);
+void	scale_by_view(t_complex *c, t_view *view);
+void	scale_by_window(t_complex *c);
+void	init_view(t_view *view);
 #endif

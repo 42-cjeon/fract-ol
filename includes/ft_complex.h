@@ -6,7 +6,7 @@
 /*   By: cjeon <student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 10:47:14 by cjeon             #+#    #+#             */
-/*   Updated: 2021/12/06 11:48:42 by cjeon            ###   ########.fr       */
+/*   Updated: 2021/12/07 14:01:34 by cjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct s_complex
 {
-	double r;
-	double i;
+	double	r;
+	double	i;
 }	t_complex;
 
 int		complex_dist(const t_complex *c);
