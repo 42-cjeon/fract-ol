@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint_fractal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjeon <cjeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: cjeon <student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 11:09:21 by cjeon             #+#    #+#             */
-/*   Updated: 2021/12/08 00:36:02 by cjeon            ###   ########.fr       */
+/*   Updated: 2021/12/08 15:17:10 by cjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_paint_part_arg
 
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
+#include <errno.h>
 void	*paint_fractal_part(void *v_arg)
 {
 	t_paint_part_arg *arg;
@@ -75,19 +77,40 @@ void	paint_fractal(unsigned int *img, t_fractal_func *ff, \
 						t_view *view, t_color *color)
 {
 	pthread_t threads[N_THREADS];
+	t_paint_part_arg arg[N_THREADS];
 	int tasks;
 	int current_task;
-	void *ret;
+	int ret;
 
 	tasks = WINDOW_H / (N_THREADS - 1);
 	current_task = 0;
 	for (int i = 0; i < N_THREADS - 1; i++) {
-		if (pthread_create(threads + i, NULL, paint_fractal_part, &(t_paint_part_arg){img, current_task, current_task + tasks, ff, view, color}) < 0)
-			exit(100);
+		arg[i].img = img;
+		arg[i].ff = ff;
+		arg[i].view = view;
+		arg[i].color = color;
+		arg[i].from = current_task;
 		current_task += tasks;
+		arg[i].to = current_task;
+		if ((ret = pthread_create(threads + i, NULL, paint_fractal_part, arg + i))) {
+			perror(strerror(ret));
+			exit(ret);
+		}
 	}
-	if (pthread_create(threads + N_THREADS - 1, NULL, paint_fractal_part, &(t_paint_part_arg){img, current_task, WINDOW_H, ff, view, color}) < 0)
-		exit(42);
-	for (int i = 0; i < N_THREADS; i++)
-		pthread_join(threads[i], &ret);
+	arg[N_THREADS - 1].img = img;
+	arg[N_THREADS - 1].ff = ff;
+	arg[N_THREADS - 1].view = view;
+	arg[N_THREADS - 1].color = color;
+	arg[N_THREADS - 1].from = WINDOW_H - (WINDOW_H % (N_THREADS - 1));
+	arg[N_THREADS - 1].to = WINDOW_H;
+	if ((ret = pthread_create(threads + N_THREADS - 1, NULL, paint_fractal_part, arg + N_THREADS - 1))) {
+		perror(strerror(ret));
+		exit(ret);
+	}
+	for (int i = 0; i < N_THREADS; i++) {
+		if ((ret = pthread_join(threads[i], NULL))) {
+			perror(strerror(ret));
+			exit(ret);
+		}
+	}
 }
