@@ -6,7 +6,7 @@
 /*   By: cjeon <student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 19:56:34 by cjeon             #+#    #+#             */
-/*   Updated: 2021/12/07 14:13:07 by cjeon            ###   ########.fr       */
+/*   Updated: 2021/12/08 14:08:45 by cjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,4 @@ void	init_color(t_color *color)
 	color->shift = 0;
 	color->saturation = 0.5;
 }
+

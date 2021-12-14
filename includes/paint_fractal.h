@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   paint_fractal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjeon <student.42seoul.kr>                 +#+  +:+       +#+        */
+/*   By: cjeon <cjeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 11:09:49 by cjeon             #+#    #+#             */
-/*   Updated: 2021/12/07 14:54:58 by cjeon            ###   ########.fr       */
+/*   Updated: 2021/12/08 00:22:06 by cjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PAINT_FRACTAL_H
 # define PAINT_FRACTAL_H
 
+# include <pthread.h>
+# include <stdlib.h>
 # include "calc_escape_time.h"
 # include "coloring.h"
 # include "constants.h"

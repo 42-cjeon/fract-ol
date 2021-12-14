@@ -17,10 +17,10 @@ vpath %.c $(SRCS_ROOT)
 vpath %.h $(INCLUDES_ROOT)
 
 $(NAME) : $(OBJS) $(MLX) 
-	$(CC) -O3 -lmlx -L$(MLX_ROOT) -framework OpenGL -framework AppKit -o $@ $^
+	$(CC) -pthread -O2 -lmlx -L$(MLX_ROOT) -framework OpenGL -framework AppKit -o $@ $^
 
 $(OBJS_ROOT)/%.o : $(SRCS_ROOT)/%.c $(INCLUDES_ROOT)/%.h $(INCLUDES_ROOT)/constants.h
-	$(CC) -O3 -c $(CFLAGS) -o $@ $<
+	$(CC) -pthread -O2 -c $(CFLAGS) -o $@ $<
 
 $(MLX) :
 	$(MAKE) -C $(MLX_ROOT) all
